@@ -1,0 +1,26 @@
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+.vs/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+packages/
+nuget.config
+
+# dotnet secrets
+secrets.json
+
+# OS
+.DS_Store
+Thumbs.db
