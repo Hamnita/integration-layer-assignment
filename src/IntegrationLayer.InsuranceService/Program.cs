@@ -1,3 +1,4 @@
+using IntegrationLayer.InsuranceService.Clients;
 using IntegrationLayer.InsuranceService.Repositories;
 using IntegrationLayer.InsuranceService.Services;
 
@@ -11,6 +12,12 @@ builder.Services.AddHttpClient<IInsuranceRepository, InsuranceRepository>(client
 {
     client.BaseAddress = new Uri(builder.Configuration["ExternalApi:BaseUrl"]
         ?? throw new InvalidOperationException("ExternalApi:BaseUrl is not configured."));
+});
+
+builder.Services.AddHttpClient<IVehicleServiceClient, VehicleServiceClient>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Services:VehicleService"]
+        ?? throw new InvalidOperationException("Services:VehicleService is not configured."));
 });
 
 builder.Services.AddScoped<IInsuranceService, InsuranceService>();
