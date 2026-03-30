@@ -27,4 +27,11 @@ public class VehicleController : ControllerBase
         var result = await _client.GetByIdAsync(id, cancellationToken);
         return result is null ? NotFound() : Ok(result);
     }
+
+    [HttpGet("registration/{regNr}")]
+    public async Task<IActionResult> GetByRegistration(string regNr, CancellationToken cancellationToken)
+    {
+        var result = await _client.GetByRegistrationAsync(regNr, cancellationToken);
+        return result is null ? NotFound() : Ok(result);
+    }
 }

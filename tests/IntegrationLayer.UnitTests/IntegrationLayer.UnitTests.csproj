@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\IntegrationLayer.Core\IntegrationLayer.Core.csproj" />
     <ProjectReference Include="..\..\src\IntegrationLayer.VehicleService\IntegrationLayer.VehicleService.csproj" />
+    <ProjectReference Include="..\..\src\IntegrationLayer.Api\IntegrationLayer.Api.csproj" />
   </ItemGroup>
 
 </Project>
