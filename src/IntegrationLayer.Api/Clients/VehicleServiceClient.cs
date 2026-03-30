@@ -22,4 +22,9 @@ public class VehicleServiceClient : IVehicleServiceClient
         return await _httpClient.GetFromJsonAsync<IEnumerable<VehicleModel>>("api/vehicle", cancellationToken)
                ?? Enumerable.Empty<VehicleModel>();
     }
+
+    public async Task<VehicleRegistrationModel?> GetByRegistrationAsync(string regNr, CancellationToken cancellationToken = default)
+    {
+        return await _httpClient.GetFromJsonAsync<VehicleRegistrationModel>($"api/vehicle/registration/{regNr}", cancellationToken);
+    }
 }

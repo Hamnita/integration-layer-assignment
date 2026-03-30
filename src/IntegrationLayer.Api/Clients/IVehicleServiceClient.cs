@@ -6,4 +6,5 @@ public interface IVehicleServiceClient
 {
     Task<VehicleModel?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
     Task<IEnumerable<VehicleModel>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<VehicleRegistrationModel?> GetByRegistrationAsync(string regNr, CancellationToken cancellationToken = default);
 }
