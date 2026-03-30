@@ -7,12 +7,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHttpClient<IVehicleRepository, VehicleRepository>(client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration["ExternalApi:BaseUrl"]
-        ?? throw new InvalidOperationException("ExternalApi:BaseUrl is not configured."));
-});
-
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 var app = builder.Build();

@@ -17,20 +17,6 @@ public class VehicleController : ControllerBase
         _service = service;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
-    {
-        var results = await _service.GetAllAsync(cancellationToken);
-        return Ok(results);
-    }
-
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
-    {
-        var result = await _service.GetByIdAsync(id, cancellationToken);
-        return result is null ? NotFound() : Ok(result);
-    }
-
     [HttpGet("registration/{regNr}")]
     public async Task<IActionResult> GetByRegistration(string regNr, CancellationToken cancellationToken)
     {

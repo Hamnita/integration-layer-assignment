@@ -4,9 +4,7 @@ namespace IntegrationLayer.UnitTests;
 
 public class VehicleRepositoryRegistrationTests
 {
-    // GetByRegistrationAsync uses only in-memory data — no HTTP calls made,
-    // so we can construct the repository with a bare HttpClient.
-    private readonly VehicleRepository _sut = new(new HttpClient());
+    private readonly VehicleRepository _sut = new();
 
     [Fact]
     public async Task GetByRegistrationAsync_ReturnsVehicle_WhenRegistrationExists()

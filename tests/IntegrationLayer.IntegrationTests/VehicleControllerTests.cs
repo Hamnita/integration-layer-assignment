@@ -11,11 +11,4 @@ public class VehicleControllerTests : IClassFixture<WebApplicationFactory<Progra
     {
         _client = factory.CreateClient();
     }
-
-    [Fact]
-    public async Task GetAll_ReturnsOk()
-    {
-        var response = await _client.GetAsync("/api/vehicle");
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-    }
 }

@@ -17,38 +17,6 @@ public class VehicleServiceTests
     }
 
     [Fact]
-    public async Task GetAllAsync_ReturnsAllItems()
-    {
-        var expected = new[] { new VehicleModel { Id = 1, Name = "Test" } };
-        _repository.GetAllAsync().Returns(expected);
-
-        var result = await _sut.GetAllAsync();
-
-        Assert.Equal(expected, result);
-    }
-
-    [Fact]
-    public async Task GetByIdAsync_ReturnsItem_WhenFound()
-    {
-        var expected = new VehicleModel { Id = 1, Name = "Test" };
-        _repository.GetByIdAsync(1).Returns(expected);
-
-        var result = await _sut.GetByIdAsync(1);
-
-        Assert.Equal(expected, result);
-    }
-
-    [Fact]
-    public async Task GetByIdAsync_ReturnsNull_WhenNotFound()
-    {
-        _repository.GetByIdAsync(99).Returns((VehicleModel?)null);
-
-        var result = await _sut.GetByIdAsync(99);
-
-        Assert.Null(result);
-    }
-
-    [Fact]
     public async Task GetByRegistrationAsync_DelegatesToRepository()
     {
         var expected = new VehicleRegistrationModel { RegistrationNumber = "ABC123", Make = "Volvo", Model = "XC60", Year = 2021, Color = "Black" };
