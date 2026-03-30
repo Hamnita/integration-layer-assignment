@@ -47,4 +47,25 @@ public class VehicleServiceTests
 
         Assert.Null(result);
     }
+
+    [Fact]
+    public async Task GetByRegistrationAsync_DelegatesToRepository()
+    {
+        var expected = new VehicleRegistrationModel { RegistrationNumber = "ABC123", Make = "Volvo", Model = "XC60", Year = 2021, Color = "Black" };
+        _repository.GetByRegistrationAsync("ABC123").Returns(expected);
+
+        var result = await _sut.GetByRegistrationAsync("ABC123");
+
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public async Task GetByRegistrationAsync_ReturnsNull_WhenRepositoryReturnsNull()
+    {
+        _repository.GetByRegistrationAsync("ZZZ999").Returns((VehicleRegistrationModel?)null);
+
+        var result = await _sut.GetByRegistrationAsync("ZZZ999");
+
+        Assert.Null(result);
+    }
 }

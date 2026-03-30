@@ -17,4 +17,7 @@ public class VehicleService : IVehicleService
 
     public Task<IEnumerable<VehicleModel>> GetAllAsync(CancellationToken cancellationToken = default)
         => _repository.GetAllAsync(cancellationToken);
+
+    public Task<VehicleRegistrationModel?> GetByRegistrationAsync(string registrationNumber, CancellationToken cancellationToken = default)
+        => _repository.GetByRegistrationAsync(registrationNumber, cancellationToken);
 }
