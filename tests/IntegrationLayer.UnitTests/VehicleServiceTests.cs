@@ -1,25 +1,25 @@
 using IntegrationLayer.Core.Models;
-using IntegrationLayer.ExampleService.Repositories;
-using IntegrationLayer.ExampleService.Services;
+using IntegrationLayer.VehicleService.Repositories;
+using IntegrationLayer.VehicleService.Services;
 using NSubstitute;
-using ExampleServiceImpl = IntegrationLayer.ExampleService.Services.ExampleService;
+using VehicleServiceImpl = IntegrationLayer.VehicleService.Services.VehicleService;
 
 namespace IntegrationLayer.UnitTests;
 
-public class ExampleServiceTests
+public class VehicleServiceTests
 {
-    private readonly IExampleRepository _repository = Substitute.For<IExampleRepository>();
-    private readonly ExampleServiceImpl _sut;
+    private readonly IVehicleRepository _repository = Substitute.For<IVehicleRepository>();
+    private readonly VehicleServiceImpl _sut;
 
-    public ExampleServiceTests()
+    public VehicleServiceTests()
     {
-        _sut = new ExampleServiceImpl(_repository);
+        _sut = new VehicleServiceImpl(_repository);
     }
 
     [Fact]
     public async Task GetAllAsync_ReturnsAllItems()
     {
-        var expected = new[] { new ExampleModel { Id = 1, Name = "Test" } };
+        var expected = new[] { new VehicleModel { Id = 1, Name = "Test" } };
         _repository.GetAllAsync().Returns(expected);
 
         var result = await _sut.GetAllAsync();
@@ -30,7 +30,7 @@ public class ExampleServiceTests
     [Fact]
     public async Task GetByIdAsync_ReturnsItem_WhenFound()
     {
-        var expected = new ExampleModel { Id = 1, Name = "Test" };
+        var expected = new VehicleModel { Id = 1, Name = "Test" };
         _repository.GetByIdAsync(1).Returns(expected);
 
         var result = await _sut.GetByIdAsync(1);
@@ -41,7 +41,7 @@ public class ExampleServiceTests
     [Fact]
     public async Task GetByIdAsync_ReturnsNull_WhenNotFound()
     {
-        _repository.GetByIdAsync(99).Returns((ExampleModel?)null);
+        _repository.GetByIdAsync(99).Returns((VehicleModel?)null);
 
         var result = await _sut.GetByIdAsync(99);
 

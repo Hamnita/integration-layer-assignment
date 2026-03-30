@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLayer.UnitTests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLayer.IntegrationTests", "tests\IntegrationLayer.IntegrationTests\IntegrationLayer.IntegrationTests.csproj", "{B439E164-55E6-437C-876A-D1112DC585E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLayer.ExampleService", "src\IntegrationLayer.ExampleService\IntegrationLayer.ExampleService.csproj", "{2395C7C3-5BD7-48F5-8A36-885FC0FD7C68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLayer.VehicleService", "src\IntegrationLayer.VehicleService\IntegrationLayer.VehicleService.csproj", "{2395C7C3-5BD7-48F5-8A36-885FC0FD7C68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

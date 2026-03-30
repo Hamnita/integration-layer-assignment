@@ -5,11 +5,11 @@ namespace IntegrationLayer.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ExampleController : ControllerBase
+public class VehicleController : ControllerBase
 {
-    private readonly IExampleServiceClient _client;
+    private readonly IVehicleServiceClient _client;
 
-    public ExampleController(IExampleServiceClient client)
+    public VehicleController(IVehicleServiceClient client)
     {
         _client = client;
     }

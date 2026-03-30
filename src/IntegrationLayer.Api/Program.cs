@@ -6,11 +6,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// HTTP client to ExampleService microservice
-builder.Services.AddHttpClient<IExampleServiceClient, ExampleServiceClient>(client =>
+// HTTP client to VehicleService microservice
+builder.Services.AddHttpClient<IVehicleServiceClient, VehicleServiceClient>(client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["Services:ExampleService"]
-        ?? throw new InvalidOperationException("Services:ExampleService is not configured."));
+    client.BaseAddress = new Uri(builder.Configuration["Services:VehicleService"]
+        ?? throw new InvalidOperationException("Services:VehicleService is not configured."));
 });
 
 var app = builder.Build();

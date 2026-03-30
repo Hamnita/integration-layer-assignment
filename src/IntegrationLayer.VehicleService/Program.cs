@@ -1,5 +1,5 @@
-using IntegrationLayer.ExampleService.Repositories;
-using IntegrationLayer.ExampleService.Services;
+using IntegrationLayer.VehicleService.Repositories;
+using IntegrationLayer.VehicleService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,13 +7,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHttpClient<IExampleRepository, ExampleRepository>(client =>
+builder.Services.AddHttpClient<IVehicleRepository, VehicleRepository>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["ExternalApi:BaseUrl"]
         ?? throw new InvalidOperationException("ExternalApi:BaseUrl is not configured."));
 });
 
-builder.Services.AddScoped<IExampleService, ExampleService>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 var app = builder.Build();
 

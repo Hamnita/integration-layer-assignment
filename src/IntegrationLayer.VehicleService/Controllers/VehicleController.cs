@@ -1,15 +1,15 @@
-using IntegrationLayer.ExampleService.Services;
+using IntegrationLayer.VehicleService.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IntegrationLayer.ExampleService.Controllers;
+namespace IntegrationLayer.VehicleService.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ExampleController : ControllerBase
+public class VehicleController : ControllerBase
 {
-    private readonly IExampleService _service;
+    private readonly IVehicleService _service;
 
-    public ExampleController(IExampleService service)
+    public VehicleController(IVehicleService service)
     {
         _service = service;
     }
