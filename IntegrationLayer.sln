@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLayer.Integratio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLayer.VehicleService", "src\IntegrationLayer.VehicleService\IntegrationLayer.VehicleService.csproj", "{2395C7C3-5BD7-48F5-8A36-885FC0FD7C68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLayer.InsuranceService", "src\IntegrationLayer.InsuranceService\IntegrationLayer.InsuranceService.csproj", "{76DDB8CD-51F2-4D9E-9073-E832E8C31C15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{2395C7C3-5BD7-48F5-8A36-885FC0FD7C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2395C7C3-5BD7-48F5-8A36-885FC0FD7C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2395C7C3-5BD7-48F5-8A36-885FC0FD7C68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76DDB8CD-51F2-4D9E-9073-E832E8C31C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76DDB8CD-51F2-4D9E-9073-E832E8C31C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76DDB8CD-51F2-4D9E-9073-E832E8C31C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76DDB8CD-51F2-4D9E-9073-E832E8C31C15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8F6BC092-8A84-4DC1-A965-070F4A09B6AF} = {45A6CF61-05B4-4657-A148-C610EE26573F}
@@ -53,5 +59,6 @@ Global
 		{EB8B1F7F-13FA-4C82-B8C3-426AD6C66C75} = {96EF24A6-FE60-46BD-AB50-0E4F32F576DC}
 		{B439E164-55E6-437C-876A-D1112DC585E0} = {96EF24A6-FE60-46BD-AB50-0E4F32F576DC}
 		{2395C7C3-5BD7-48F5-8A36-885FC0FD7C68} = {45A6CF61-05B4-4657-A148-C610EE26573F}
+		{76DDB8CD-51F2-4D9E-9073-E832E8C31C15} = {45A6CF61-05B4-4657-A148-C610EE26573F}
 	EndGlobalSection
 EndGlobal

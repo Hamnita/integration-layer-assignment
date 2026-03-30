@@ -13,6 +13,13 @@ builder.Services.AddHttpClient<IVehicleServiceClient, VehicleServiceClient>(clie
         ?? throw new InvalidOperationException("Services:VehicleService is not configured."));
 });
 
+// HTTP client to InsuranceService microservice
+builder.Services.AddHttpClient<IInsuranceServiceClient, InsuranceServiceClient>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Services:InsuranceService"]
+        ?? throw new InvalidOperationException("Services:InsuranceService is not configured."));
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

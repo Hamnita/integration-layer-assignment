@@ -1,0 +1,6 @@
+@IntegrationLayer.InsuranceService_HostAddress = http://localhost:5220
+
+GET {{IntegrationLayer.InsuranceService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
