@@ -1,18 +1,19 @@
-using IntegrationLayer.Core.Interfaces.Repositories;
 using IntegrationLayer.Core.Models;
-using IntegrationLayer.Services;
+using IntegrationLayer.ExampleService.Repositories;
+using IntegrationLayer.ExampleService.Services;
 using NSubstitute;
+using ExampleServiceImpl = IntegrationLayer.ExampleService.Services.ExampleService;
 
 namespace IntegrationLayer.UnitTests;
 
 public class ExampleServiceTests
 {
     private readonly IExampleRepository _repository = Substitute.For<IExampleRepository>();
-    private readonly ExampleService _sut;
+    private readonly ExampleServiceImpl _sut;
 
     public ExampleServiceTests()
     {
-        _sut = new ExampleService(_repository);
+        _sut = new ExampleServiceImpl(_repository);
     }
 
     [Fact]

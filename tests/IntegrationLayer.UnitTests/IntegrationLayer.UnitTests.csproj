@@ -25,8 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\IntegrationLayer.Core\IntegrationLayer.Core.csproj" />
-    <ProjectReference Include="..\..\src\IntegrationLayer.Services\IntegrationLayer.Services.csproj" />
-    <ProjectReference Include="..\..\src\IntegrationLayer.Repositories\IntegrationLayer.Repositories.csproj" />
+    <ProjectReference Include="..\..\src\IntegrationLayer.ExampleService\IntegrationLayer.ExampleService.csproj" />
   </ItemGroup>
 
 </Project>

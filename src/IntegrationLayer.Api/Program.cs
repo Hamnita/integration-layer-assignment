@@ -1,7 +1,4 @@
-using IntegrationLayer.Core.Interfaces.Repositories;
-using IntegrationLayer.Core.Interfaces.Services;
-using IntegrationLayer.Repositories;
-using IntegrationLayer.Services;
+using IntegrationLayer.Api.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,15 +6,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Repositories (HTTP clients)
-builder.Services.AddHttpClient<IExampleRepository, ExampleRepository>(client =>
+// HTTP client to ExampleService microservice
+builder.Services.AddHttpClient<IExampleServiceClient, ExampleServiceClient>(client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["ExternalApi:BaseUrl"]
-        ?? throw new InvalidOperationException("ExternalApi:BaseUrl is not configured."));
+    client.BaseAddress = new Uri(builder.Configuration["Services:ExampleService"]
+        ?? throw new InvalidOperationException("Services:ExampleService is not configured."));
 });
-
-// Services
-builder.Services.AddScoped<IExampleService, ExampleService>();
 
 var app = builder.Build();
 
@@ -32,5 +26,4 @@ app.UseAuthorization();
 app.MapControllers();
 app.Run();
 
-// Expose Program for WebApplicationFactory in integration tests
 public partial class Program { }

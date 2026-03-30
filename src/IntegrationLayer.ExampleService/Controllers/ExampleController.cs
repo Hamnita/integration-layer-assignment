@@ -1,30 +1,30 @@
-using IntegrationLayer.Api.Clients;
+using IntegrationLayer.ExampleService.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IntegrationLayer.Api.Controllers;
+namespace IntegrationLayer.ExampleService.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class ExampleController : ControllerBase
 {
-    private readonly IExampleServiceClient _client;
+    private readonly IExampleService _service;
 
-    public ExampleController(IExampleServiceClient client)
+    public ExampleController(IExampleService service)
     {
-        _client = client;
+        _service = service;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
-        var results = await _client.GetAllAsync(cancellationToken);
+        var results = await _service.GetAllAsync(cancellationToken);
         return Ok(results);
     }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
     {
-        var result = await _client.GetByIdAsync(id, cancellationToken);
+        var result = await _service.GetByIdAsync(id, cancellationToken);
         return result is null ? NotFound() : Ok(result);
     }
 }

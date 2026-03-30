@@ -1,8 +1,7 @@
-using IntegrationLayer.Core.Interfaces.Repositories;
-using IntegrationLayer.Core.Interfaces.Services;
 using IntegrationLayer.Core.Models;
+using IntegrationLayer.ExampleService.Repositories;
 
-namespace IntegrationLayer.Services;
+namespace IntegrationLayer.ExampleService.Services;
 
 public class ExampleService : IExampleService
 {
