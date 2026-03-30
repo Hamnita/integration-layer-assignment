@@ -27,4 +27,11 @@ public class InsuranceController : ControllerBase
         var result = await _client.GetByIdAsync(id, cancellationToken);
         return result is null ? NotFound() : Ok(result);
     }
+
+    [HttpGet("person/{personId}")]
+    public async Task<IActionResult> GetByPersonId(string personId, CancellationToken cancellationToken)
+    {
+        var result = await _client.GetByPersonIdAsync(personId, cancellationToken);
+        return result is null ? NotFound() : Ok(result);
+    }
 }

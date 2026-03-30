@@ -22,4 +22,12 @@ public class InsuranceServiceClient : IInsuranceServiceClient
         return await _httpClient.GetFromJsonAsync<IEnumerable<InsuranceModel>>("api/insurance", cancellationToken)
                ?? Enumerable.Empty<InsuranceModel>();
     }
+
+    public async Task<PersonInsurancesModel?> GetByPersonIdAsync(string personId, CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync($"api/insurance/person/{personId}", cancellationToken);
+        if (response.StatusCode == System.Net.HttpStatusCode.NotFound) return null;
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<PersonInsurancesModel>(cancellationToken);
+    }
 }
