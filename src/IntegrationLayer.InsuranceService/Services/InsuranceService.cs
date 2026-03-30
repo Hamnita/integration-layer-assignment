@@ -22,12 +22,6 @@ public class InsuranceService : IInsuranceService
         _vehicleClient = vehicleClient;
     }
 
-    public Task<InsuranceModel?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
-        => _repository.GetByIdAsync(id, cancellationToken);
-
-    public Task<IEnumerable<InsuranceModel>> GetAllAsync(CancellationToken cancellationToken = default)
-        => _repository.GetAllAsync(cancellationToken);
-
     public async Task<PersonInsurancesModel?> GetByPersonIdAsync(string personId, CancellationToken cancellationToken = default)
     {
         var entries = await _repository.GetByPersonIdAsync(personId, cancellationToken);

@@ -5,8 +5,7 @@ namespace IntegrationLayer.UnitTests;
 
 public class InsuranceRepositoryPersonTests
 {
-    // GetByPersonIdAsync uses only in-memory data — no HTTP calls made
-    private readonly InsuranceRepository _sut = new(new HttpClient());
+    private readonly InsuranceRepository _sut = new();
 
     [Fact]
     public async Task GetByPersonIdAsync_ReturnsEntries_WhenPersonExists()
