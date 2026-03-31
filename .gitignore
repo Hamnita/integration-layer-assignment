@@ -1,10 +1,14 @@
 # Build output
 bin/
 obj/
+out/
+publish/
 
 # User-specific files
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
 .vs/
 
 # Rider
@@ -15,15 +19,38 @@ obj/
 
 # NuGet
 *.nupkg
+*.snupkg
 packages/
 nuget.config
+project.lock.json
+project.fragment.lock.json
 
 # dotnet secrets
 secrets.json
+appsettings.Local.json
+appsettings.Development.json
+
+# dotnet test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# dotnet tool manifest (optional — remove if you want to track tools)
+# .config/dotnet-tools.json
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.*
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Git worktrees
 .worktrees/
