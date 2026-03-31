@@ -21,7 +21,7 @@ builder.Services.AddHttpClient<IInsuranceServiceClient, InsuranceServiceClient>(
         ?? throw new InvalidOperationException("Services:InsuranceService is not configured."));
 });
 
-builder.Services.AddScoped<ApiKeyMiddleware>();
+builder.Services.AddSingleton<ApiKeyMiddleware>();
 
 var app = builder.Build();
 
