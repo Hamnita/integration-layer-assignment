@@ -116,4 +116,4 @@ curl -H "X-Api-Key: change-me-in-production" http://localhost:5105/api/vehicle/r
     There is alot of elements to creating a new intergration layer, it's interesting to have to think about security, architecture, SoC and also to keep it simple and not overcomplicate things.
 
   ## What you would improve or extend if you had more time:
-    Currently there is only build & test in GitHub, next step would be to set up a complete CI/CD pipeline and environments for dev, test, stage & prod. Codewise i would probably focus on setting a more explained code guideline and set a 
+    Currently there is only build & test in GitHub, next step would be to set up a complete CI/CD pipeline and environments for dev, test, stage & prod. Codewise i would probably focus on setting a more explained code guideline and improve documentation in swagger to make it easier for the consumers of the API.
