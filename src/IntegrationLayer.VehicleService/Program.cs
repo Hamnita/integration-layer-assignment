@@ -1,3 +1,4 @@
+using IntegrationLayer.Core.Middleware;
 using IntegrationLayer.VehicleService.Repositories;
 using IntegrationLayer.VehicleService.Services;
 
@@ -9,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
+builder.Services.AddSingleton<ApiKeyMiddleware>();
 
 var app = builder.Build();
 
@@ -19,6 +21,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
