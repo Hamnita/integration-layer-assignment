@@ -1,4 +1,4 @@
-using IntegrationLayer.Api.Middleware;
+using IntegrationLayer.Core.Middleware;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
