@@ -18,8 +18,9 @@ public class ApiKeyMiddlewareIntegrationTests : IClassFixture<WebApplicationFact
                 config.AddInMemoryCollection(new Dictionary<string, string?>
                 {
                     ["ApiKey"] = TestApiKey,
-                    ["Services:VehicleService"] = "http://localhost:5001/",
-                    ["Services:InsuranceService"] = "http://localhost:5002/"
+                    ["Services:VehicleService"] = "http://localhost:5200/",
+                    ["Services:InsuranceService"] = "http://localhost:5300/",
+                    ["Services:InternalApiKey"] = "internal-test-key"
                 });
             });
         });
