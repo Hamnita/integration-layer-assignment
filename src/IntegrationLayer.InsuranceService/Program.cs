@@ -1,3 +1,4 @@
+using IntegrationLayer.Core.Middleware;
 using IntegrationLayer.InsuranceService.Clients;
 using IntegrationLayer.InsuranceService.Repositories;
 using IntegrationLayer.InsuranceService.Services;
@@ -10,13 +11,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IInsuranceRepository, InsuranceRepository>();
 
+builder.Services.AddTransient<InternalApiKeyHandler>();
 builder.Services.AddHttpClient<IVehicleServiceClient, VehicleServiceClient>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["Services:VehicleService"]
         ?? throw new InvalidOperationException("Services:VehicleService is not configured."));
-});
+}).AddHttpMessageHandler<InternalApiKeyHandler>();
 
 builder.Services.AddScoped<IInsuranceService, InsuranceService>();
+builder.Services.AddSingleton<ApiKeyMiddleware>();
 
 var app = builder.Build();
 
@@ -27,6 +30,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
