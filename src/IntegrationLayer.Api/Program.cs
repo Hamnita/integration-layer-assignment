@@ -1,5 +1,5 @@
 using IntegrationLayer.Api.Clients;
-using IntegrationLayer.Api.Middleware;
+using IntegrationLayer.Core.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,19 +30,21 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddTransient<InternalApiKeyHandler>();
+
 // HTTP client to VehicleService microservice
 builder.Services.AddHttpClient<IVehicleServiceClient, VehicleServiceClient>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["Services:VehicleService"]
         ?? throw new InvalidOperationException("Services:VehicleService is not configured."));
-});
+}).AddHttpMessageHandler<InternalApiKeyHandler>();
 
 // HTTP client to InsuranceService microservice
 builder.Services.AddHttpClient<IInsuranceServiceClient, InsuranceServiceClient>(client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["Services:InsuranceService"]
         ?? throw new InvalidOperationException("Services:InsuranceService is not configured."));
-});
+}).AddHttpMessageHandler<InternalApiKeyHandler>();
 
 builder.Services.AddSingleton<ApiKeyMiddleware>();
 
