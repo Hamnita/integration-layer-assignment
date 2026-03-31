@@ -19,6 +19,14 @@ public class ApiKeyMiddlewareTests
     }
 
     [Fact]
+    public void Constructor_Throws_WhenApiKeyNotConfigured()
+    {
+        var emptyConfig = new ConfigurationBuilder().Build();
+
+        Assert.Throws<InvalidOperationException>(() => new ApiKeyMiddleware(emptyConfig));
+    }
+
+    [Fact]
     public async Task InvokeAsync_Returns401_WhenApiKeyHeaderMissing()
     {
         var context = new DefaultHttpContext();
@@ -56,5 +64,6 @@ public class ApiKeyMiddlewareTests
         await _sut.InvokeAsync(context, next);
 
         Assert.True(nextCalled);
+        Assert.NotEqual(StatusCodes.Status401Unauthorized, context.Response.StatusCode);
     }
 }
