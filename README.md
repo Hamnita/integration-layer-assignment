@@ -32,6 +32,14 @@ IntegrationLayer.Api          ← public-facing API gateway
 - **In-memory mock data** — both services use static dictionaries as their data store, making the project runnable with zero external dependencies.
 - **Input validation at the edge** — each service validates and normalises its own inputs (registration number format, person ID format) rather than relying on the caller.
 
+### Error Handling
+
+All three services share the same error handling strategy via `IntegrationLayer.Core`.
+
+- **`ExceptionMiddleware`** sits at the outermost layer of the pipeline and catches any unhandled exception, returning a `500` with a JSON body `{"error":"An unexpected error occurred."}` so raw stack traces are never exposed to callers.
+- **`ApiKeyMiddleware`** returns `401` with a JSON body indicating whether the API key was missing (`{"error":"API key is missing."}`) or invalid (`{"error":"Invalid API key."}`).
+- **HTTP clients** (`VehicleServiceClient`, `InsuranceServiceClient`) treat a `404` from a downstream service as a `null` result and call `EnsureSuccessStatusCode` for all other non-success responses, letting the exception middleware handle any unexpected failures.
+
 ---
 
 ## Running Locally
@@ -99,3 +107,13 @@ dotnet test
 ```bash
 curl -H "X-Api-Key: change-me-in-production" http://localhost:5105/api/vehicle/registration/ABC123
 ```
+
+### Personal reflection:
+  # Any similar project or experience you’ve had in the past:
+    In my last assignment i worked with a brand new application for electricians and the work also involved breaking up an old monolith gateway into microservices to create, read, update and delete data for members, companies etc in many different sources (both internal and external).
+
+  # What was challenging or interesting in this assignment:
+    There is alot of elements to creating a new intergration layer, it's interesting to have to think about security, architecture, SoC and also to keep it simple and not overcomplicate things.
+
+  # What you would improve or extend if you had more time:
+    Currently there is only build & test in GitHub, next step would be to set up a complete CI/CD pipeline and environments for dev, test, stage & prod. Codewise i would probably focus on setting a more explained code guideline and set a 
