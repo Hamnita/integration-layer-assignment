@@ -20,6 +20,7 @@ builder.Services.AddHttpClient<IVehicleServiceClient, VehicleServiceClient>(clie
 
 builder.Services.AddScoped<IInsuranceService, InsuranceService>();
 builder.Services.AddSingleton<ApiKeyMiddleware>();
+builder.Services.AddSingleton<ExceptionMiddleware>();
 
 var app = builder.Build();
 
@@ -30,6 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 app.MapControllers();

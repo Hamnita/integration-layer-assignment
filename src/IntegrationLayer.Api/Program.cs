@@ -47,6 +47,7 @@ builder.Services.AddHttpClient<IInsuranceServiceClient, InsuranceServiceClient>(
 }).AddHttpMessageHandler<InternalApiKeyHandler>();
 
 builder.Services.AddSingleton<ApiKeyMiddleware>();
+builder.Services.AddSingleton<ExceptionMiddleware>();
 
 var app = builder.Build();
 
@@ -57,6 +58,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 app.MapControllers();

@@ -14,6 +14,9 @@ public class VehicleServiceClient : IVehicleServiceClient
 
     public async Task<VehicleRegistrationModel?> GetByRegistrationAsync(string regNr, CancellationToken cancellationToken = default)
     {
-        return await _httpClient.GetFromJsonAsync<VehicleRegistrationModel>($"api/vehicle/registration/{regNr}", cancellationToken);
+        var response = await _httpClient.GetAsync($"api/vehicle/registration/{regNr}", cancellationToken);
+        if (response.StatusCode == System.Net.HttpStatusCode.NotFound) return null;
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<VehicleRegistrationModel>(cancellationToken);
     }
 }

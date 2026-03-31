@@ -1,3 +1,4 @@
+using System.Text.Json;
 using IntegrationLayer.Core.Middleware;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -65,5 +66,38 @@ public class ApiKeyMiddlewareTests
 
         Assert.True(nextCalled);
         Assert.NotEqual(StatusCodes.Status401Unauthorized, context.Response.StatusCode);
+    }
+
+    [Fact]
+    public async Task InvokeAsync_WritesJsonErrorBody_WhenApiKeyHeaderMissing()
+    {
+        var context = new DefaultHttpContext();
+        context.Response.Body = new MemoryStream();
+        RequestDelegate next = _ => Task.CompletedTask;
+
+        await _sut.InvokeAsync(context, next);
+
+        context.Response.Body.Seek(0, SeekOrigin.Begin);
+        var body = await new StreamReader(context.Response.Body).ReadToEndAsync();
+        var doc = JsonDocument.Parse(body);
+        Assert.True(doc.RootElement.TryGetProperty("error", out _));
+        Assert.Equal("application/json", context.Response.ContentType);
+    }
+
+    [Fact]
+    public async Task InvokeAsync_WritesJsonErrorBody_WhenApiKeyHeaderIsWrong()
+    {
+        var context = new DefaultHttpContext();
+        context.Response.Body = new MemoryStream();
+        context.Request.Headers["X-Api-Key"] = "wrong-key";
+        RequestDelegate next = _ => Task.CompletedTask;
+
+        await _sut.InvokeAsync(context, next);
+
+        context.Response.Body.Seek(0, SeekOrigin.Begin);
+        var body = await new StreamReader(context.Response.Body).ReadToEndAsync();
+        var doc = JsonDocument.Parse(body);
+        Assert.True(doc.RootElement.TryGetProperty("error", out _));
+        Assert.Equal("application/json", context.Response.ContentType);
     }
 }
