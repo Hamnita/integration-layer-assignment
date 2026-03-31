@@ -109,11 +109,11 @@ curl -H "X-Api-Key: change-me-in-production" http://localhost:5105/api/vehicle/r
 ```
 
 ### Personal reflection:
-  # Any similar project or experience you’ve had in the past:
+  ## Any similar project or experience you’ve had in the past:
     In my last assignment i worked with a brand new application for electricians and the work also involved breaking up an old monolith gateway into microservices to create, read, update and delete data for members, companies etc in many different sources (both internal and external).
 
-  # What was challenging or interesting in this assignment:
+  ## What was challenging or interesting in this assignment:
     There is alot of elements to creating a new intergration layer, it's interesting to have to think about security, architecture, SoC and also to keep it simple and not overcomplicate things.
 
-  # What you would improve or extend if you had more time:
+  ## What you would improve or extend if you had more time:
     Currently there is only build & test in GitHub, next step would be to set up a complete CI/CD pipeline and environments for dev, test, stage & prod. Codewise i would probably focus on setting a more explained code guideline and set a 
