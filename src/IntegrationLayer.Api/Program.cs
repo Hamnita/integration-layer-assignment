@@ -1,4 +1,5 @@
 using IntegrationLayer.Api.Clients;
+using IntegrationLayer.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,8 @@ builder.Services.AddHttpClient<IInsuranceServiceClient, InsuranceServiceClient>(
         ?? throw new InvalidOperationException("Services:InsuranceService is not configured."));
 });
 
+builder.Services.AddScoped<ApiKeyMiddleware>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -29,6 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
